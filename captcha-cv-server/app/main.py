@@ -9,9 +9,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.exceptions import RequestValidationError
 
 from app.api.errors.validation_error import request_validation_exception_handler
+from app.core.model_manager import model_manager
+from app.services.third_party.yidun import Mini
 # 导入顶级api路由
 from app.api.routers import api
-
 from app.core.config import settings
 
 
@@ -30,6 +31,9 @@ def get_application() -> FastAPI:
         allow_methods=["*"],
         allow_headers=["*"],
     )
+
+    # 处理模型
+    model_manager.load_state("yidun", "./static/model/icon_selection.pkl")
 
     # 参数异常处理
     application.add_exception_handler(RequestValidationError, request_validation_exception_handler)

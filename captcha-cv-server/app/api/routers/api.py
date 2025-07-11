@@ -5,6 +5,8 @@
 
 from fastapi import APIRouter
 
+from .icon_selection import api as icon_selection
+
 router = APIRouter()
 
-router.include_router()
+router.include_router(icon_selection.router)

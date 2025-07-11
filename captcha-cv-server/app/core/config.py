@@ -5,12 +5,12 @@
 # app/core/config.py
 
 import os
-from pydantic import BaseSettings
+from pydantic import BaseConfig
 
 fast_api_env = os.environ.get('FAST_API_ENV')
 
 
-class Development(BaseSettings):
+class Development(BaseConfig):
     MODEL = 'dev'
 
     SERVICE_NAME = 'fastapi_captcha_service'
@@ -19,7 +19,7 @@ class Development(BaseSettings):
         env_file = ".env"
 
 
-class Product(BaseSettings):
+class Product(BaseConfig):
     MODEL = 'pro'
 
     SERVICE_NAME = 'fastapi_captcha_service'
